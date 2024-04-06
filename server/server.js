@@ -2,6 +2,7 @@ const express = require('express');
 const cookieSession = require('cookie-session');
 const cors = require('cors');
 
+
 const usersRouter = require('./resources/users/users.router');
 const authRouter = require('./resources/auth/auth.router');
 
