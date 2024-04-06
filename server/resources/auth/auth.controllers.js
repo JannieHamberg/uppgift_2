@@ -22,7 +22,7 @@ const register = async (req, res) => {
     users.push(newUser);
     await fs.writeFile('./data/users.json', JSON.stringify(users, null, 2));
 
-    res.status(201).json(newUser);
+    res.status(201).json(newUser.email);
 
 }
 
@@ -48,7 +48,7 @@ const logout = (req, res) => {
 }   
 
 const authorize = (req, res) => {
-    if (!req.session.users.email) {
+    if (!req.session.users) {
         return res.status(401).json('Du är inte inloggad');
     }
     res.status(200).json(req.session.users);
