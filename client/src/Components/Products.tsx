@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Product, useCart } from '../Contexts/CartContext';
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  const {addToCart} = useCart();
 
 
   useEffect(() => {
@@ -25,15 +28,18 @@ const Products = () => {
   return (
     <div>
       <h1>Products</h1>
-{/*       {error && <p>Error: {error}</p>}
       <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <h2>{product.name}</h2>
+        {products.map((product: Product) => (
+         <div key={product.id}>
+            <div>{product.images}</div>
+            <h3>{product.id}</h3>
+            <p>{product.default_price.unit_amount / 100} sek</p>
             <p>{product.description}</p>
-          </li>
+
+            <button onClick={() => addToCart(product)}>Köp</button>
+         </div>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 };
