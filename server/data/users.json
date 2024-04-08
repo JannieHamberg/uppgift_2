@@ -14,5 +14,9 @@
   {
     "email": "email2@email2.com",
     "password": "$2b$10$0..nYuYr1g1AblgCsE4X3.8lH2zKweIG3juE/sZOGesECn/3yMN7G"
+  },
+  {
+    "email": "hg@hg.se",
+    "password": "$2b$10$8ucaga/Q5AcnCvZYKgDFvO.X67M1sph7M9C3j09kNv4IL4/a3ihne"
   }
 ]
