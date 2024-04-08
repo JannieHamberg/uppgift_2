@@ -16,17 +16,4 @@
     "password": "$2b$10$0..nYuYr1g1AblgCsE4X3.8lH2zKweIG3juE/sZOGesECn/3yMN7G"
   },
   {
-    "email": "testtttttt@testtt.com",
-    "password": "$2b$10$GrfqWHMGG5PbeugDuBU0KeC69Y3U0vVspuL4H3LPY0QfuFksTAMPa"
-  },
-  {
-    "email": "stripeee@stripee.se",
-    "password": "$2b$10$uyLtNWXIvQ9vpyqEq2OgEO7xi.GwuIMLLHdK9Z2uAHR4SXl7Ly7c2",
-    "stripeCustomerId": "cus_PsELNWbnSP6N7F"
-  },
-  {
-    "email": "test@testingtesting.com",
-    "password": "$2b$10$vi0tjX/1lWGOdS8D66KUNeszaSY04fTHQPwwaT7HHL/ct76UIyOti",
-    "stripeCustomerId": "cus_PsPlgevZM1c3n4"
-  }
 ]
