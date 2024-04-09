@@ -30,18 +30,24 @@ const Products = () => {
       <h1>Products</h1>
       <ul>
         {products.map((product: Product) => (
-         <div key={product.id}>
-            <div>{product.images}</div>
-            <h3>{product.id}</h3>
-            <p>{product.default_price.unit_amount / 100} sek</p>
-            <p>{product.description}</p>
-
-            <button onClick={() => addToCart(product)}>Köp</button>
-         </div>
+          <div key={product.id} className="card w-96 bg-base-100 shadow-xl">
+            <figure>
+              <img src={product.images[0]} alt="product" />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">{product.name}</h2>
+              <p>{product.description}</p>
+              <p>{(product.default_price.unit_amount / 100).toLocaleString()} SEK</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary" onClick={() => addToCart(product)}>Köp</button>
+              </div>
+            </div>
+          </div>
         ))}
       </ul>
     </div>
   );
+  
 };
 
 export default Products;
