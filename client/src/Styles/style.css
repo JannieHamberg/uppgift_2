@@ -1,0 +1,36 @@
+.products-bg {
+    background-image: url('./../assets/15.png');
+    background-size:cover;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: white;
+}
+
+.shoppingCart-bg{
+    background-image: url('./../assets/36.png');
+    background-size:cover;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: white;
+}
+
+
+.card-image-img {
+    object-fit: cover;
+}
+
+.buy-btn,
+.checkout-btn {
+    background-color: #f2c4de;
+    border: none;
+}
+
+.home-content {
+    margin-top: 12%;
+}
+
+.shoppingCart {
+    padding-top: 12%;
+}
