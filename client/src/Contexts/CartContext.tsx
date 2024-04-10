@@ -20,11 +20,17 @@ interface CartItem {
 interface ICartContext {
     cart: CartItem[],
     addToCart: (product: Product) => void
+    removeFromCart: (productId: string) => void
+    updateQuantity: (productId: string, quantity: number) => void
+    calculateTotal: () => string
 }
 
 const initialValue = {
     cart: [],
-    addToCart: () => {}
+    addToCart: () => {},
+    removeFromCart: () => {},
+    updateQuantity: () => {},
+    calculateTotal: () => ''
 }
 
 const CartContext = createContext<ICartContext>(initialValue);
@@ -52,11 +58,31 @@ const CartProvider = ({children}: PropsWithChildren) => {
         }
     }
 
+    const removeFromCart = (productId: string) => {
+        setCart(cart.filter(item => item.product.id !== productId));
+    };
+
+    const updateQuantity = (productId: string, quantity: number) => {
+        setCart(cart.map(item => {
+            if (item.product.id === productId) {
+                return { ...item, quantity: Math.max(1, quantity) }; 
+            }
+            return item;
+        }));
+    };
+
+    const calculateTotal = () => {
+        return cart.reduce((acc, item) => {
+          return acc + (item.quantity * (item.product.default_price.unit_amount / 100));
+        }, 0).toFixed(2);
+      };
+      
+
 
 
 
     return (
-        <CartContext.Provider value={{cart, addToCart}}>
+        <CartContext.Provider value={{cart, addToCart, removeFromCart, updateQuantity, calculateTotal }}>
             {children}
         </CartContext.Provider>
     )

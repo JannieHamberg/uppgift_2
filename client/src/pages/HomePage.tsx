@@ -1,5 +1,6 @@
 import { useEffect, useState, ChangeEvent, FormEvent } from "react"
 
+
 const App = () => {
   const [user, setUser] = useState<string>("")
   const [email, setEmail] = useState<string>("");
@@ -79,8 +80,11 @@ const logout = async () => {
 
 
   return (
-    <div>
+    <div className="home-content mt-20 flex justify-center ">
+      <div className="mt-20">
       <h1>{user ? "INLOGGAD:" + user : "UTLOGGAD"}</h1>
+      </div>
+      
       <form onSubmit={register}>
         <input type="email" value={email} onChange={handleEmailChange} placeholder="Email" required />
         <input type="password" value={password} onChange={handlePasswordChange} placeholder="Password" required />
