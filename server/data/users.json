@@ -14,5 +14,10 @@
   {
     "email": "email2@email2.com",
     "password": "$2b$10$0..nYuYr1g1AblgCsE4X3.8lH2zKweIG3juE/sZOGesECn/3yMN7G"
+  },
+  {
+    "email": "abc@abc.se",
+    "password": "$2b$10$y4oCJfxjrnQARGNSnmQOeuJ26yGm6dfczIPXKkBNhp6IWQ7FxmrPu",
+    "stripeCustomerId": "cus_PttGthyZdtVkH5"
   }
 ]
