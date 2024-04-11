@@ -1,8 +1,42 @@
 
-import { useCart } from '../Contexts/CartContext';
+
+import {useCart} from '../Contexts/CartContext';
 
 export const ShoppingCart = () => {
     const { cart, removeFromCart, updateQuantity, calculateTotal } = useCart();
+   
+
+    const handleCheckout = async () => {
+      try {
+        const checkoutItems = cart.map((item) => ({
+          name: item.product.name,
+          images: item.product.images,
+          unit_amount: item.product.default_price.unit_amount,
+          quantity: item.quantity
+        }));
+
+        const response = await fetch('http://localhost:3001/api/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include', 
+          body: JSON.stringify({ items: checkoutItems }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const sessionData = await response.json();
+
+        localStorage.setItem("sessionId", JSON.stringify(sessionData.sessionId));
+        window.location.href = sessionData.url;
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
+  
   
     return (
         <div className='shoppingCart-bg text-white pb-20'>
@@ -30,7 +64,7 @@ export const ShoppingCart = () => {
             <h3 className="text-xl font-bold mb-4">Order Summary</h3>
             <div className="mt-auto">
             <p className="mb-4 font-bold text-lg">Total: {calculateTotal()} SEK</p>
-            <button className="checkout-btn text-white w-full py-2 rounded-lg">Checkout</button>
+            <button onClick={handleCheckout} className="checkout-btn text-white w-full py-2 rounded-lg">Checkout</button>
             </div>
           </div>
         </div>
