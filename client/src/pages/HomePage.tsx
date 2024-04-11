@@ -47,25 +47,29 @@ const App = () => {
   };
 
   const login = async () => {
-    const response = await fetch('http://localhost:3001/api/auth/login', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        email: "fakeemail@gmail.com",
-        password: "123456"
-    })
-  })
-  const data = await response.json()
-  
-  if (response.status === 200) {
-    setUser(data)
-  } else {
-    setUser("")
-  }
-}
+    const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            email: email,
+            password: password,
+        }),
+    });
+    const data = await response.json();
+    if (response.status === 200) {
+        setEmail(data.email);
+        setPassword("");
+        window.location.href = "/";
+    } 
+    else {
+        alert("Du har angivit ett felaktigt använamn eller lösenord. Försök igen!");
+        setEmail("");
+        setPassword("");
+    }
+};
 
 const logout = async () => {
   const response = await fetch('http://localhost:3001/api/auth/logout', {
@@ -90,9 +94,14 @@ const logout = async () => {
         <input type="password" value={password} onChange={handlePasswordChange} placeholder="Password" required />
         <button type="submit">Registrera 😁</button>
       </form>
-      <button onClick={login}>Login</button>
-      <button onClick={logout}>Logout</button>
+      <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="registerUser" placeholder="Email"></input>
+            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="registerPassword" placeholder="Password"></input>
+      <button onClick={login}>Logga in</button>
+      <button onClick={logout}>Logga ut</button>
+
+
     </div>
+    
   )
 }
 

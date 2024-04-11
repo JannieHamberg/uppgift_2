@@ -1,5 +1,5 @@
 const loggedIn = (req, res, next) => {
-    if (!req.session.users) {
+    if (!req.session.user) {
         return res.status(401).json('Du är inte inloggad');
     }
     next();

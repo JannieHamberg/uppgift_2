@@ -19,5 +19,15 @@
     "email": "abc@abc.se",
     "password": "$2b$10$y4oCJfxjrnQARGNSnmQOeuJ26yGm6dfczIPXKkBNhp6IWQ7FxmrPu",
     "stripeCustomerId": "cus_PttGthyZdtVkH5"
+  },
+  {
+    "email": "abcd@abcd.se",
+    "password": "$2b$10$iZ7M8sjSaXXF3Igz57kbYuMFWph96O8Pa96L/PO7njTu57qnhn1Tu",
+    "stripeCustomerId": "cus_Pu7YTB46OakeN7"
+  },
+  {
+    "email": "e@e.com",
+    "password": "$2b$10$mgAYSw2RYcC3f5Jt62OhN.FIgv4Ic.7EL95tv4vv/GiAuiJiGloHe",
+    "stripeCustomerId": "cus_Pu7c7vqoIwI9Xp"
   }
 ]

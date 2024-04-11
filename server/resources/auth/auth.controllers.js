@@ -10,8 +10,8 @@ const register = async (req, res) => {
     
         const { email, password } = req.body;
     try{
-        const users = await fetchUsers();
-        const userAlreadyExists = users.find(u => u.email === email);
+        const user = await fetchUsers();
+        const userAlreadyExists = user.find(u => u.email === email);
 
         if (userAlreadyExists) {
             return res.status(400).json('Användaren finns redan, välj en annan e-postadress');
@@ -28,8 +28,8 @@ const register = async (req, res) => {
             password: hashedPassword,
             stripeCustomerId: customer.id
         }
-        users.push(newUser);
-        await fs.writeFile('./data/users.json', JSON.stringify(users, null, 2));
+        user.push(newUser);
+        await fs.writeFile('./data/users.json', JSON.stringify(user, null, 2));
 
         res.status(201).json(newUser.email);
 
@@ -42,14 +42,14 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const { email, password } = req.body;
 
-    const users = await fetchUsers();
-    const userExists = users.find(u => u.email === email);
+    const user = await fetchUsers();
+    const userExists = user.find(u => u.email === email);
 
     if (!userExists || !await bcrypt.compare(password, userExists.password)) {
         return res.status(400).json('Fel e-postadress eller lösenord');
     }
 
-    req.session.users = userExists
+    req.session.user = userExists
     res.status(200).json(userExists.email);
 
 }
@@ -61,10 +61,10 @@ const logout = (req, res) => {
 }   
 
 const authorize = (req, res) => {
-    if (!req.session.users) {
+    if (!req.session.user) {
         return res.status(401).json('Du är inte inloggad');
     }
-    res.status(200).json(req.session.users);
+    res.status(200).json(req.session.user);
 }
 
 module.exports = { register, login, logout, authorize }
