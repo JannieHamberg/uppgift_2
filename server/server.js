@@ -6,7 +6,7 @@ const cors = require('cors');
 const usersRouter = require('./resources/users/users.router');
 const authRouter = require('./resources/auth/auth.router');
 const productsRouter = require('./resources/products/products.router'); 
-
+const checkoutRouter = require('./resources/stripe/stripe.router');
 const app = express();
 
 app.use(cors({
@@ -23,5 +23,6 @@ app.use(cookieSession({
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
+app.post('/checkout', /* authRouter, */ checkoutRouter);
 
 app.listen(3001, () => console.log('Server is running on port 3001'));
