@@ -24,6 +24,7 @@ interface ICartContext {
     removeFromCart: (productId: string) => void
     updateQuantity: (productId: string, quantity: number) => void
     calculateTotal: () => string
+    clearCart: () => void
 }
 
 const initialValue = {
@@ -31,7 +32,8 @@ const initialValue = {
     addToCart: () => {},
     removeFromCart: () => {},
     updateQuantity: () => {},
-    calculateTotal: () => ''
+    calculateTotal: () => '',
+    clearCart: () => {}
 }
 
 const CartContext = createContext<ICartContext>(initialValue);
@@ -77,13 +79,18 @@ const CartProvider = ({children}: PropsWithChildren) => {
           return acc + (item.quantity * (item.product.default_price.unit_amount / 100));
         }, 0).toFixed(2);
       };
+
+      const clearCart = () => {
+        setCart([]);
+        localStorage.removeItem('cart');
+      }
       
 
 
 
 
     return (
-        <CartContext.Provider value={{cart, addToCart, removeFromCart, updateQuantity, calculateTotal }}>
+        <CartContext.Provider value={{cart, addToCart, removeFromCart, updateQuantity, calculateTotal, clearCart }}>
             {children}
         </CartContext.Provider>
     )
