@@ -29,5 +29,10 @@
     "email": "e@e.com",
     "password": "$2b$10$mgAYSw2RYcC3f5Jt62OhN.FIgv4Ic.7EL95tv4vv/GiAuiJiGloHe",
     "stripeCustomerId": "cus_Pu7c7vqoIwI9Xp"
+  },
+  {
+    "email": "testar@testar.se",
+    "password": "$2b$10$JQMozxY0e5Lz59DuSWaWL.06M4FBJOAGOk40GduPmTjFtulpePfFO",
+    "stripeCustomerId": "cus_PuGQzdpSPXrShU"
   }
 ]

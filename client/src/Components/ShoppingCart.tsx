@@ -1,40 +1,34 @@
-
-
-import {useCart} from '../Contexts/CartContext';
+import { useCart } from "../Contexts/CartContext";
 
 export const ShoppingCart = () => {
     const { cart, removeFromCart, updateQuantity, calculateTotal } = useCart();
-   
 
     const handleCheckout = async () => {
-      try {
-        const checkoutItems = cart.map((item) => ({
-          name: item.product.name,
-          images: item.product.images,
-          unit_amount: item.product.default_price.unit_amount,
-          quantity: item.quantity
-        }));
+        try {
+            const products = cart.map((item) => ({
+                product: item.product.default_price.id,
+                quantity: item.quantity,
+            }));
+            
+            const response = await fetch('http://localhost:3001/api/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({ cart: products }),
+            });
 
-        const response = await fetch('http://localhost:3001/api/checkout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include', 
-          body: JSON.stringify({ items: checkoutItems }),
-        });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+            const sessionData = await response.json();
+            localStorage.setItem('session_id', JSON.stringify(sessionData.session_id));
+            window.location.href = sessionData.url;
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
         }
-
-        const sessionData = await response.json();
-
-        localStorage.setItem("sessionId", JSON.stringify(sessionData.sessionId));
-        window.location.href = sessionData.url;
-      } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-      }
     };
   
   
