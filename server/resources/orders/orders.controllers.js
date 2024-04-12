@@ -5,12 +5,14 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const saveOrder = async (orderData) => {
     try {
-        const data = await fs.readFile('./../data/orders.json');
+        const data = await fs.readFile('./data/orders.json');
         const orders = JSON.parse(data);
+
+        orderData.orderDate = new Date().toISOString();
 
         orders.push(orderData);
 
-        await fs.writeFile('./../data/orders.json', JSON.stringify(orders, null, 2));
+        await fs.writeFile('./data/orders.json', JSON.stringify(orders, null, 2));
         
     } catch (err) {
         console.error(err);
@@ -23,12 +25,12 @@ router.get('/confirmation', async (req, res) => {
         const session = await stripe.checkout.sessions.retrieve(sessionId);
         const orderData = {
             sessionId: session.id,
+            orderDate: new Date().toISOString(),
             paymentStatus: session.payment_status,
             paymentMethod: session.payment_method,
             paymentId: session.payment_intent,
             customer: session.customer,
-            orderDate: session.created,
-            orderItems: session.display_items,
+            orderItems: session.display_items || session.line_items,
             total: session.amount_total,
             currency: session.currency
         };

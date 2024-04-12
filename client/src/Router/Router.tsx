@@ -4,6 +4,8 @@ import HomePage from "../pages/HomePage";
 import { WebShopPage } from "../pages/WebShopPage";
 import { ErrorPage } from "../pages/ErrorPage";
 import { ShoppingCartPage } from "../pages/ShoppingCartPage";
+import { SuccessPage } from "../pages/Success";
+import { ContactPage } from "../pages/ContactPage";
 
 export const router = createBrowserRouter([
     {
@@ -23,7 +25,15 @@ export const router = createBrowserRouter([
             {
                 path: "/shoppingcart",
                 element: <ShoppingCartPage />
-            }
+            },
+            {
+                path: "/success",
+                element: <SuccessPage />
+            },
+            {
+                path: "/contact",
+                element: <ContactPage />
+            },
 
         ]
     }
