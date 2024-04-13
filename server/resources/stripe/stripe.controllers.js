@@ -43,10 +43,7 @@ const verifySession = async (req, res) => {
   const session = await stripe.checkout.sessions.retrieve(session_id);
 
   console.log("Stripe session retrieved:", session); 
-  if (typeof session !== 'string') {
-    res.status(400).json({ error: 'Session ID is undefined or not a string.' });
-    return;
-  }
+
 
   if (session.payment_status === "paid") {
     const lineItems = await stripe.checkout.sessions.listLineItems(session_id);
