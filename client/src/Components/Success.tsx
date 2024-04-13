@@ -4,11 +4,11 @@ import { useCart } from "../Contexts/CartContext";
 import axios from "axios";
 
 export const Success = () => {
-    /* const { clearCart } = useCart(); */
-
+     const { clearCart } = useCart(); 
     const [verified, setVerified] = useState(false);
   
     useEffect(() => {
+        if (!verified) {
         const verifySession = async () => {
           try {
             console.log("Starting verification...");
@@ -30,6 +30,7 @@ export const Success = () => {
               if (response.data && response.data.verified) {
                 console.log("Betalningen är verifierad!");
                 setVerified(true);
+                clearCart();
                 
               } else {
                 console.log("Betalningen är inte verifierad.");
@@ -41,11 +42,8 @@ export const Success = () => {
             }
           } catch (error) {
             console.error("Fel uppstod vid verifiering:", error);
-        
           }
         };
-      
-        if (!verified) {
           verifySession();
         }
       }, [verified]);
