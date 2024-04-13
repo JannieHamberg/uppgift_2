@@ -3,14 +3,47 @@ import { useCart } from "../Contexts/CartContext";
 export const ShoppingCart = () => {
     const { cart, removeFromCart, updateQuantity, calculateTotal } = useCart();
 
+/*     const handleSaveOrder = async (stripeSessionId: string) => {
+        // This is where you prepare the order data to be sent to your backend
+        const orderData = {
+            items: cart.map(item => ({
+                id: item.product.id,
+                price_id: item.product.default_price.id,
+                quantity: item.quantity
+            })),
+            stripeSessionId: stripeSessionId,
+            // Include any other information you need for the order
+        };
+
+        try {
+            const response = await fetch('http://localhost:3001/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+           
+            const responseData = await response.json();
+            console.log(responseData.message); 
+        } catch (error) {
+            console.error('There was a problem saving the order:', error);
+        }
+    }; */
+
     const handleCheckout = async () => {
         try {
             const products = cart.map((item) => ({
                 product: item.product.default_price.id,
                 quantity: item.quantity,
             }));
-            
-            const response = await fetch('http://localhost:3001/api/checkout', {
+
+            const response = await fetch('http://localhost:3001/api/checkout/create-checkout-session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -24,10 +57,14 @@ export const ShoppingCart = () => {
             }
 
             const sessionData = await response.json();
-            localStorage.setItem('session_id', JSON.stringify(sessionData.session_id));
+            console.log(sessionData);
+            localStorage.setItem('session_id', sessionData.session_id);
+
+            /* handleSaveOrder(sessionData.session_id); */
+
             window.location.href = sessionData.url;
         } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('There was a problem with the checkout operation:', error);
         }
     };
   

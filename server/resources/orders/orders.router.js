@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { checkout } = require('./stripe.controllers'); 
+const { saveOrder } = require('./orders.controllers');
 
-router.post('/order', checkout);
+router.post('/', saveOrder);
 
 module.exports = router;

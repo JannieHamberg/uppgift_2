@@ -43,7 +43,6 @@ const App = () => {
     });
     const data = await response.json();
     console.log(data);
-    // Add error handling here
   };
 
   const login = async () => {
