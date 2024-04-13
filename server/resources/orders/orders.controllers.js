@@ -19,7 +19,7 @@ const saveOrder = async (orderData) => {
     } 
 };
 
-router.get('/confirmation', async (req, res) => {
+const verifySession =  async (req, res) => {
     const { sessionId } = req.query;
     try {
         const session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -41,4 +41,6 @@ router.get('/confirmation', async (req, res) => {
         console.error(error);
         res.status(400).send(`Fel i hämtning av orderdata: ${error.message}`);
     }
-});
+};
+
+module.exports = { verifySession, saveOrder };

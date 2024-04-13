@@ -34,5 +34,10 @@
     "email": "testar@testar.se",
     "password": "$2b$10$JQMozxY0e5Lz59DuSWaWL.06M4FBJOAGOk40GduPmTjFtulpePfFO",
     "stripeCustomerId": "cus_PuGQzdpSPXrShU"
+  },
+  {
+    "email": "nytt@nytt.se",
+    "password": "$2b$10$92HFR/pc4WhkThbfnNctx.QOjsOXiUk2NCbl1bMONX0ItcnKHbOc6",
+    "stripeCustomerId": "cus_PucUiGcB2Bao27"
   }
 ]
