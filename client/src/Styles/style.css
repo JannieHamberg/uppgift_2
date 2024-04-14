@@ -1,3 +1,30 @@
+.glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(26px); /* For Safari compatibility */
+    background: rgba(255, 255, 255, 0.4); /* Just an example, adjust the color and opacity as needed */
+  }
+  
+
+.home-bg {
+    background-image: url('./../assets/2.png');
+    background-size:cover;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: white;
+
+}
+/* 
+.home-box-bg {
+    background-image: url('./../assets/45.png');
+    background-size:contain;
+    min-height: fit-content;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: white;
+
+} */
+
 .products-bg {
     background-image: url('./../assets/15.png');
     background-size:cover;
@@ -42,7 +69,8 @@
 
 .buy-btn,
 .checkout-btn,
-.success-btn {
+.success-btn,
+.hompage-btn {
     background-color: #f2c4de;
     border: none;
 }

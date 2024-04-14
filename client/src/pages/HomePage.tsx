@@ -82,26 +82,28 @@ const logout = async () => {
 }
 
 
-  return (
-    <div className="home-content mt-20 flex justify-center ">
-      <div className="mt-20">
-      <h1>{user ? "INLOGGAD:" + user : "UTLOGGAD"}</h1>
-      </div>
-      
-      <form onSubmit={register}>
-        <input type="email" value={email} onChange={handleEmailChange} placeholder="Email" required />
-        <input type="password" value={password} onChange={handlePasswordChange} placeholder="Password" required />
-        <button type="submit">Registrera 😁</button>
-      </form>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="registerUser" placeholder="Email"></input>
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="registerPassword" placeholder="Password"></input>
-      <button onClick={login}>Logga in</button>
-      <button onClick={logout}>Logga ut</button>
-
-
+return (
+  <div className=" home-bg w-full p-4">
+    <div className=" text-center mt-20">
+      <h1 className="text-lg font-semibold mb-4 mt-20">{user ? `INLOGGAD: ${user}` : "UTLOGGAD"}</h1>
     </div>
+    <div className="home-box-bg mt-20 ">
+    <form onSubmit={register} className="flex flex-col items-center gap-2 mb-4">
+      <input type="email" value={email} onChange={handleEmailChange} placeholder="Email" required className="border rounded p-2" />
+      <input type="password" value={password} onChange={handlePasswordChange} placeholder="Password" required className="border rounded p-2" />
+      <button type="submit" className="hompage-btn btn btn-white pl-10 pr-10 text-l shadow-xl">Registrera</button>
+    </form>
     
-  )
+    <div className="flex flex-col items-center gap-2 mb-4">
+      <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" className="border rounded p-2" />
+      <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" className="border rounded p-2" />
+      <button onClick={login} className="hompage-btn btn btn-white pl-10 pr-10 text-l shadow-xl">Logga in</button>
+      <button onClick={logout} className="hompage-btn btn btn-white pl-10 pr-10 text-l shadow-xl">Logga ut</button>
+    </div>
+    </div>
+  </div>
+);
+
 }
 
 
